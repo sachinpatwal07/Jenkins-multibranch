@@ -3,6 +3,10 @@ pipeline {
      tools {
        nodejs "node"
    }
+   environment {
+        GH_TOKEN  = credentials('GITHUB_TOKEN')
+    }
+
     stages {
         stage("Test") {
             steps {
@@ -41,11 +45,16 @@ pipeline {
             steps {
                 script {
 
-                    withEnv(['GH_TOKEN=${env.GITHUB_TOKEN}']) {
-                        sh '''
-                        npx semantic-release
-                        '''
-                    }
+                     sh '''
+                # Run optional required steps before releasing
+                npx semantic-release
+                '''
+
+                    // withEnv(['GH_TOKEN=${env.GITHUB_TOKEN}']) {
+                    //     sh '''
+                    //     npx semantic-release
+                    //     '''
+                    // }
                 }
             }
         }
