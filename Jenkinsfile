@@ -1,10 +1,10 @@
 pipeline {
     agent any
-     tools {
-       nodejs "node"
-   }
-   environment {
-        GITHUB_TOKEN  = credentials('GITHUB_TOKEN')
+    tools {
+        nodejs "node"
+    }
+    environment {
+        GITHUB_TOKEN = credentials('GITHUB_TOKEN')
     }
 
     stages {
@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stage("testing stage") {
+        stage("Testing Stage") {
             when {
                 expression {
                     env.BRANCH_NAME.startsWith('testing')
@@ -44,10 +44,10 @@ pipeline {
         stage('Release') {
             steps {
                 script {
-            withEnv(['GH_TOKEN=${env.GITHUB_TOKEN}']) {
-                sh 'npx semantic-release'
-            }
-
+                    withEnv(['GH_TOKEN=${env.GITHUB_TOKEN}']) {
+                        sh 'npx semantic-release'
+                    }
+                }
             }
         }
     }
