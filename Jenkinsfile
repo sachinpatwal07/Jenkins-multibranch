@@ -2,17 +2,21 @@
 pipeline {
     agent any
     environment {
-        GH_TOKEN  = credentials('GITHUB_TOKEN')
+        GH_TOKEN  = credentials('some-id')
     }
     stages {
         stage('Test') {
             steps {
-               echo "test successful.........."
+                sh '''
+                # Configure your test steps here (checkout, npm install, tests etc)
+                npm install
+                npm test
+                '''
             }
         }
         stage('Release') {
             tools {
-                nodejs "node"
+                nodejs "node LTS"
             }
             steps {
                 sh '''
