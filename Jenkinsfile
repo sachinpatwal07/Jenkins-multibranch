@@ -4,7 +4,7 @@ pipeline {
        nodejs "node"
    }
    environment {
-        GH_TOKEN  = credentials('GITHUB_TOKEN')
+        GITHUB_TOKEN  = credentials('GITHUB_TOKEN')
     }
 
     stages {
@@ -47,7 +47,7 @@ pipeline {
 
                      sh '''
                 # Run optional required steps before releasing
-                npx semantic-release
+                npx semantic-release --github-token='${GITHUB_TOKEN}'
                 '''
 
                     // withEnv(['GH_TOKEN=${env.GITHUB_TOKEN}']) {
