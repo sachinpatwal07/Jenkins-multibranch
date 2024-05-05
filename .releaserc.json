@@ -1,21 +1,30 @@
 {
-    "branches": ["main",{ "name": "develop", "prerelease": true }],
+    "branches": ["master", { "name": "develop", "prerelease": true }],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
-    [
-      "@semantic-release/npm",
-      {
-        "npmPublish": false
-     }
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": ["dist/", "package.json", "CHANGELOG.md"],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "url": "https://api.github.com",
+          "prefix": "/repos/sachinpatwal07/Jenkins-multibranch"
+        }
+      ]
     ],
-    ["@semantic-release/git", {
-      "assets": ["dist/", "package.json","CHANGELOG.md"],
-      "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-    }],
-    "@semantic-release/github"
-    ],
-  "repositoryUrl": "https://github.com/sachinpatwal07/Jenkins-multibranch"
-
-}
+    "repositoryUrl": "https://github.com/sachinpatwal07/Jenkins-multibranch"
+  }
+  
