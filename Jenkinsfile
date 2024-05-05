@@ -45,6 +45,9 @@ pipeline {
             steps {
                 script {
 
+                    echo "GitHub Token: ${env.GITHUB_TOKEN}"
+
+
                      sh '''
                 # Run optional required steps before releasing
                 npx semantic-release --github-token='${GITHUB_TOKEN}'
