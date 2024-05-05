@@ -1,26 +1,52 @@
 pipeline {
     agent any
-
+    tools {
+        nodejs "node"
+    }
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('sachin-docker')
-        IMAGE_NAME = "sachinpatwal30/node_app"
+        GITHUB_TOKEN = credentials('GITHUB_TOKEN')
     }
 
-
     stages {
-        stage('Build Image') {
+        stage("Test") {
             steps {
                 script {
-                    docker.build "${IMAGE_NAME}:${BUILD_NUMBER}"
+                    echo "Branch name is ${env.BRANCH_NAME}"
+                    echo "Build Number is ${BUILD_NUMBER} "
+                    def commitMessage = sh(script: 'git log -1 --pretty=%B', returnStdout: true).trim()
+                    echo "Last commit message: ${commitMessage}"
+                    sh "npm install"
                 }
             }
         }
 
-        stage('Push Image') {
+        stage("Testing Stage") {
+            when {
+                expression {
+                    env.BRANCH_NAME.startsWith('testing')
+                }
+            }
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com/v2/', "sachin-docker") {
-                        docker.image("${IMAGE_NAME}:${BUILD_NUMBER}").push()
+                    echo "${BUILD_NUMBER} is this"
+                }
+            }
+        }
+
+        stage("Deploy") {
+            steps {
+                script {
+                    echo "Hello from deploy"
+                }
+            }
+        }
+        
+        
+        stage('Release') {
+            steps {
+                script {
+                    withEnv(['GH_TOKEN=${env.GITHUB_TOKEN}']) {
+                        sh 'npx semantic-release'
                     }
                 }
             }
@@ -28,12 +54,9 @@ pipeline {
     }
 
     post {
-        always {
-            sh "docker logout"
-        }
         success {
-            script  {
-               cleanWs()
+            script {
+                cleanWs()
             }
         }
     }
