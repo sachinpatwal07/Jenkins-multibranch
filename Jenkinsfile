@@ -42,7 +42,7 @@ pipeline {
         stage('Release') {
             steps {
                 script {
-                    withEnv(['GH_TOKEN=${env.GITHUB_TOKEN}']) {
+                    withEnv(['GITHUB_TOKEN=${env.GITHUB_TOKEN}']) {
                         sh 'npx semantic-release'
                     }
                 }
