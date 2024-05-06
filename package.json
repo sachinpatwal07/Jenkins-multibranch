@@ -8,6 +8,10 @@
     "prepare": "husky",
     "commit": "git cz"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sachinpatwal07/Jenkins-multibranch.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
