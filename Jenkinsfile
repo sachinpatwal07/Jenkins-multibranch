@@ -39,14 +39,15 @@ pipeline {
         }
         
         stage('Release') {
-            steps {
-                script {
-                    withEnv(['GITHUB_TOKEN=${GITHUB_TOKEN}']) {
-                        sh 'npx semantic-release'
-                    }
-                }
+          steps {
+             script {
+                withEnv(["GITHUB_TOKEN=${GITHUB_TOKEN}"]) {
+                sh 'npx semantic-release'
             }
         }
+    }
+}
+
     }
 
     post {
