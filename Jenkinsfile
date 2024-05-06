@@ -41,9 +41,7 @@ pipeline {
         stage('Release') {
           steps {
              script {
-                withEnv(['GITHUB_TOKEN=${GITHUB_TOKEN}']) {
-                sh 'npx semantic-release'
-            }
+                sh "npx semantic-release --ci --github-token=${GITHUB_TOKEN}"
         }
     }
 }
