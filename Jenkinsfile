@@ -16,7 +16,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage("Testing Stage") {
             when {
                 expression {
@@ -37,7 +37,6 @@ pipeline {
                 }
             }
         }
-        
         stage('Release') {
             steps {
                 script {
