@@ -41,6 +41,8 @@ pipeline {
         stage('Release') {
             steps {
                 script {
+
+                    sh "npm install"
                     sh "npx semantic-release --ci --github-token=${GITHUB_TOKEN}"
                 }
             }
