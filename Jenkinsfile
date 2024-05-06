@@ -7,6 +7,7 @@ pipeline {
         GITHUB_TOKEN = credentials('GITHUB_TOKEN')
     }
 
+
     stages {
         stage("Test") {
             steps {
