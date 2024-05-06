@@ -13,9 +13,6 @@ pipeline {
                 script {
                     echo "Branch name is ${env.BRANCH_NAME}"
                     echo "Build Number is ${BUILD_NUMBER} "
-                    def commitMessage = sh(script: 'git log -1 --pretty=%B', returnStdout: true).trim()
-                    echo "Last commit message: ${commitMessage}"
-                    sh "npm install"
                 }
             }
         }
