@@ -14,7 +14,7 @@ module.exports = {
         enum: {
           feat: {
             description:
-              "A new feature (Update version as major with breaking changes else update version as minor)",
+              "A new feature (Update version as minor)",
             title: "Features",
             emoji: "✨",
           },
@@ -46,7 +46,7 @@ module.exports = {
         default: "",
       },
       isBreaking: {
-        description: "Are there any breaking changes? (y/n)",
+        description: "Are there any breaking changes? (Update Version as Major for Yes) (y/n)",
         default: "n",
       },
       breakingBody: {
