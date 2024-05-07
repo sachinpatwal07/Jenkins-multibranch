@@ -1,0 +1,81 @@
+module.exports = {
+  extends: ["@commitlint/config-conventional"],
+  rules: {
+    
+    "type-enum": [
+      2,
+      "always",
+      ["feat", "fix", "revert"], // Allow only these commit types
+    ],
+    "header-max-length": [2, "always", 100], // Limit header to 100 characters
+    "body-max-length": [2, "always", 100], // Limit body to 100 characters
+  },
+  prompt: {
+    questions: {
+      type: {
+        description: "Select the type of change that you're committing:",
+        enum: {
+          feat: {
+            description: "A new featusssssssre",
+            title: "Features",
+            emoji: "✨",
+          },
+          fix: {
+            description: "A new fix",
+            title: "fix",
+            emoji: "✨",
+          },
+          revert: {
+            description: "A new rever",
+            title: "revert",
+            emoji: "✨",
+          },
+        },
+        default: "feat",
+        enum: ["feat", "fix", "revert"],
+        enum: ["feat", "fix", "revert"],
+      },
+      scope: {
+        description:
+          "What is the scope of this change (e.g., component or file name): (press enter to skip)",
+        default: "",
+      },
+      subject: {
+        description:
+          "Write a short, imperative tense description of the change:",
+        default: "",
+      },
+      body: {
+        description:
+          "Provide a longer description of the change: (press enter to skip)",
+        default: "",
+      },
+      isBreaking: {
+        description: "Are there any breaking changes? (y/n)",
+        default: "n",
+      },
+      breakingBody: {
+        description:
+          "A BREAKING CHANGE commit requires a body. Please enter a longer description of the commit, which contains the breaking changes: (press enter to skip)",
+        default: "",
+      },
+      breaking: {
+        description: "Describe the breaking changes:",
+        default: "",
+      },
+      isIssueAffected: {
+        description: "Does this change affect any open issues? (y/n)",
+        default: "n",
+      },
+      issuesBody: {
+        description:
+          "If issues are closed, the commit requires a body. Please enter a longer description of the commit, detailing the issues that are closed: (press enter to skip)",
+        default: "",
+      },
+      issues: {
+        description: 'Add issue references (e.g., "fix #123", "re #123".):',
+        default: "",
+      },
+    },
+  },
+};
