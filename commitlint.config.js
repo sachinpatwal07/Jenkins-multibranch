@@ -24,7 +24,7 @@ module.exports = {
             emoji: "🐛",
           },
           revert: {
-            description: "Reverts a previous commit (Update version as patch)",
+            description: "Reverts a previous commit (Update version as minor)",
             title: "Reverts",
             emoji: "🗑",
           },
