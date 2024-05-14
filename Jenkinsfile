@@ -39,7 +39,7 @@ pipeline {
                     echo "This is the build version: ${version}"
 
                     // Build and tag the Docker image
-                    sh "docker build -t myApp:${version} ."
+                    // sh "docker build -t myApp:${version} ."
                 }
             }
         
