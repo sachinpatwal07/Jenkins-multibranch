@@ -22,28 +22,26 @@ pipeline {
         stage('Release') {
             steps {
                 script {
-                    sh "npm install"
-                    sh 'npx semantic-release --ci --github-token=${GITHUB_TOKEN}'               
-                    }
+                     sh "npm install"
+
+                    // Run semantic release and capture the output
+                    def releaseOutput = sh(script: 'npx semantic-release --ci --github-token=${GITHUB_TOKEN}', returnStdout: true).trim()
+
+                    // Print the full output (useful for debugging or verification)
+                    echo releaseOutput
+
+                    // Extract the version number using a regular expression
+                    def versionMatcher = releaseOutput =~ /.*?The next release version is (\d+\.\d+\.\d+).*/
+                    if (versionMatcher) {
+                        def newVersion = versionMatcher[0][1]
+                        echo "New version: ${newVersion}"
+                    } else {
+                        echo "Failed to extract version number from semantic release output."
+                    }  }
             }
         }
 
-          stage('Build Docker Image') {
-            steps {
-                script {
-                    // Get the version from the package.json or from the output of semantic release
-                    def version = sh(script: 'npx semantic-release --dry-run | grep "Release version" | cut -d " " -f 3', returnStdout: true).trim()
-                    echo "Version is ${version}"
-
-                    // Print the version number indicating it is the build version
-                    echo "This is the build version: ${version}"
-
-                    // Build and tag the Docker image
-                    // sh "docker build -t myApp:${version} ."
-                }
-            }
-        
-    }
+  
     
     }
 
