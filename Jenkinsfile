@@ -42,7 +42,7 @@ pipeline {
                     sh "docker build -t myApp:${version} ."
                 }
             }
-        }
+        
     }
     
     }
