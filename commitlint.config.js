@@ -46,7 +46,7 @@ module.exports = {
         default: "",
       },
       isBreaking: {
-        description: "Are there any breaking changes? (Update Version as Major for Yes) (y/n)",
+        description: "Are there any breaking changes? (Update Version as Major) ",
         default: "n",
       },
       breakingBody: {
