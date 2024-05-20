@@ -5,7 +5,6 @@ pipeline {
     }
     environment {
         GITHUB_TOKEN = credentials('GITHUB_TOKEN')
-        NPM_TOKEN = credentials('NPM_TOKEN')
     }
 
     stages {
@@ -13,7 +12,9 @@ pipeline {
             steps {
                 script {
                     echo "Branch name is ${env.BRANCH_NAME}"
-                    echo "Build Number is ${BUILD_NUMBER}"
+                    echo "Build Number is ${BUILD_NUMBER} "
+
+                    // sh "npm install"
                 }
             }
         }
@@ -22,10 +23,11 @@ pipeline {
             steps {
                 script {
                     sh "npm install"
-                    sh 'npx semantic-release --ci --github-token=${GITHUB_TOKEN} --npm-token=${NPM_TOKEN}'               
-                }
+                    sh 'npx semantic-release --ci --github-token=${GITHUB_TOKEN}'               
+                    }
             }
         }
+    
     }
 
     post {
