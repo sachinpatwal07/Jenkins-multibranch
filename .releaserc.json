@@ -1,8 +1,27 @@
 {
-  "branches": ["master", "develop", "testing"],
-  "plugins": [
-    "@semantic-release/commit-analyzer",
-    "@semantic-release/release-notes-generator",
-    "@semantic-release/git"
-  ]
+    "branch":  ["master", "develop", "testing"],
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/changelog",
+            {
+                "changelogFile": "CHANGELOG.md",
+                "changelogTitle": "# Semantic Versioning Changelog"
+            }
+        ],
+        "@semantic-release/npm",
+        [
+            "@semantic-release/git",
+            {
+                "assets": ["package.json", "CHANGELOG.md"]
+            }
+        ],
+        [
+            "@semantic-release/exec",
+            {
+                "failCmd": "exit 0"
+            }
+        ]
+    ]
 }
