@@ -1,9 +1,11 @@
 {
-  "branches": ["master", "develop", "testing"],
+  "branches": ["main"],
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     "@semantic-release/npm",
-    "@semantic-release/git"
+    ["@semantic-release/git", {
+      "message": "fix(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+    }]
   ]
 }
