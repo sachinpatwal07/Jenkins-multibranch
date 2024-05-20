@@ -41,5 +41,8 @@
     "commitizen": {
       "path": "@commitlint/cz-commitlint"
     }
+  },
+  "release": {
+    "branches": ["main", "develop", "testing"]
   }
 }
