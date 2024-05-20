@@ -4,7 +4,7 @@ module.exports = {
     "type-enum": [
       2,
       "always",
-      ["feat", "fix", "revert"], // Allow only these commit types
+      ["feat", "fix", "chore","revert"], // Allow only these commit types
     ],
   },
   prompt: {
