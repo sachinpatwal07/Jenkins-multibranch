@@ -14,11 +14,10 @@ pipeline {
                     echo "Branch name is ${env.BRANCH_NAME}"
                     echo "Build Number is ${BUILD_NUMBER} "
 
-                    // sh "npm install"
+                  
                 }
             }
         }
-
 
         stage('Release') {
             steps {
